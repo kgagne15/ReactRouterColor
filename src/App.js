@@ -5,7 +5,7 @@ import ColorForm from "./ColorForm";
 
 import './App.css';
 
-import {BrowserRouter, Route, Link, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Redirect, Switch} from "react-router-dom";
 
 function App() {
   
@@ -13,17 +13,17 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Switch>
-        <Route exact path="/colors">
-          <Colors colors={colorsIdx}/>
-        </Route>
-        <Route exact path="/colors/new">
-          <ColorForm/>
-        </Route>
-        <Route path="/colors/:color">
-          <ColorDetail/>
-        </Route>
-        
+        <Switch>
+          <Route exact path="/colors">
+            <Colors colors={colorsIdx}/>
+          </Route>
+          <Route exact path="/colors/new">
+            <ColorForm colors={colorsIdx}/>
+          </Route>
+          <Route path="/colors/:color">
+            <ColorDetail colors={colorsIdx}/>
+          </Route>
+          <Redirect to="/colors"/>
         </Switch>
       </BrowserRouter>
     </div>
