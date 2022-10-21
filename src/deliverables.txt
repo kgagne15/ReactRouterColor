@@ -1,0 +1,6 @@
+/colors link will bring you to homepage with list of all colors
+each available color is listed and is a link that will take you to 
+that individual color's page (/colors/:color)
+/colors will also have a button that will show a form that will add a new color (/colors/new)
+submitting form sends you to the colors index where the new color appears at the top
+if navigating to color page that doesn't exist OR an invalid url, it should redirect to index
