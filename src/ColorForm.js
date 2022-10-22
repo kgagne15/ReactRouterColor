@@ -3,13 +3,21 @@ import {Link, useHistory} from "react-router-dom";
 
 //used solution for useHistory
 const ColorForm = ({colors}) => {
-    const [formData, setFormData] = useState([]);
+    const INITIAL_STATE = {
+        colorName: '',
+        colorRGB: '#000000'
+    }
+    const [formData, setFormData] = useState(INITIAL_STATE);
     const history = useHistory();
+
+    const addColor = () => {
+        colors.splice(0, 0, formData)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        colors.splice(0, 0, formData.color)
-        setFormData('');
+        addColor(formData)
+        setFormData(INITIAL_STATE);
         history.push("/colors");
     }
 
@@ -25,12 +33,21 @@ const ColorForm = ({colors}) => {
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="color">Color: </label>
+            <label htmlFor="color">Color Name: </label>
             <input
-                id="color"
-                name="color"
-                placeholder="color"
-                value={formData.color}
+                type="text"
+                id="colorName"
+                name="colorName"
+                placeholder="color name"
+                value={formData.colorName}
+                onChange={handleChange}
+            />
+            <label htmlFor="color">Color RGB: </label>
+            <input
+                type="color"
+                id="colorRGB"
+                name="colorRGB"
+                value={formData.colorRGB}
                 onChange={handleChange}
             />
             <button>Submit</button>
